@@ -1,3 +1,13 @@
+#search-bar {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    width:80%;
+    top:0;
+    justify-content: center;
+    left: 10%;
+    border-radius: 5px; 
+}
 #button1, #button2 {
     position: fixed;
     width: 50px;

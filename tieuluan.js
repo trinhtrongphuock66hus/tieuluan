@@ -1,3 +1,26 @@
+function searchStudent() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("search-bar");
+    filter = input.value.toUpperCase();
+    table = document.querySelector("table");
+    tr = table.getElementsByTagName("tr");
+
+    // Lặp qua tất cả các dòng của bảng
+    for (i = 0; i < tr.length; i++) {
+        // Lấy ô chứa tiêu đề "topic"
+        td = tr[i].getElementsByTagName("td")[2]; 
+
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            // So sánh với giá trị tìm kiếm
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}
 function toggleEditButtons1() {
     // Chọn tất cả các ô và tiêu đề ở cột 5, 6, 7
     var targetColumns = document.querySelectorAll('td:nth-child(5), th:nth-child(5), td:nth-child(6), th:nth-child(6), td:nth-child(7), th:nth-child(7)');
