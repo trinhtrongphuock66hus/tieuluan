@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <input type="text id="search-bar" oninput="searchStudent()" placeholder="Tìm kiếm sinh viên theo topics nghiên cứu">
+    <input type="text" id="search-bar" oninput="searchStudent()" placeholder="Tìm kiếm sinh viên theo topics nghiên cứu">
     <?php
     // Mở file csv
     $fp = fopen('student.csv', 'r');
