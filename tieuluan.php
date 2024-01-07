@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <input type="text" id="search-bar" oninput="searchStudent()" placeholder="Tìm kiếm sinh viên theo topics nghiên cứu">
+    <input type="text id="search-bar" oninput="searchStudent()" placeholder="Tìm kiếm sinh viên theo topics nghiên cứu">
     <?php
     // Mở file csv
     $fp = fopen('student.csv', 'r');
@@ -30,7 +30,6 @@
 
     // Thêm một cột cho nút sửa
     echo '<th class="edit">Sửa</th>';
-    echo '<th class="edit">Thêm</th>';
     echo '<th class="edit">Xóa</th>';
 
     echo '</tr>';
@@ -47,7 +46,6 @@
 
         // Truyền giá trị hàng và email vào hàm edit khi click vào nút "Sửa"
         echo '<td><button class="edit" onclick="edit(' . $row_number . ', \'' . $row[3] . '\')">Sửa</button></td>';
-        echo '<td><button class="edit" onclick="addNewRow(\'' . $row[3] . '\')">Thêm</button></td>';
         echo '<td><button class="edit" onclick="deleteRow( \'' . $row[3] . '\' )">Xóa</button></td>';
 
         echo '</tr>';
@@ -56,6 +54,7 @@
 
     echo '<button id="button1" onclick="toggleEditButtons1()">Sửa</button>';
     echo '<button id="button2" style="display:none;" onclick="toggleEditButtons2()">Quay lại</button>';
+    echo '<button id="button3" style="display:none;" onclick="addNewRow()">Thêm</button>';
     // Đóng bảng html
     echo '</table>';
 

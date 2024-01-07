@@ -24,17 +24,19 @@ function searchStudent() {
 function toggleEditButtons1() {
     // Chọn tất cả các ô và tiêu đề ở cột 5, 6, 7
     var targetColumns = document.querySelectorAll('td:nth-child(5), th:nth-child(5), td:nth-child(6), th:nth-child(6), td:nth-child(7), th:nth-child(7)');
-
     // Lặp qua từng phần tử và thay đổi thuộc tính display
     targetColumns.forEach(function (column) {
         // Thay đổi thuộc tính display
         column.style.display = 'table-cell';
     });
+    
     var button1 = document.getElementById('button1');
     var button2 = document.getElementById('button2');
-
+    var button3 = document.getElementById('button3');
+    button3.classList.add('action1');
     button1.style.display = 'none';
     button2.style.display = 'block';
+    button3.style.display = 'block';
 }
 function toggleEditButtons2() {
     var existingForm = document.getElementsByTagName('form')[0];
@@ -52,9 +54,11 @@ function toggleEditButtons2() {
     });
     var button1 = document.getElementById('button1');
     var button2 = document.getElementById('button2');
-
+    var button3 = document.getElementById('button3');
+    button3.classList.remove('action1');
     button1.style.display = 'block';
     button2.style.display = 'none';
+    button3.style.display = 'none';
 }
 function edit(row, email) {
     var existingForm = document.getElementsByTagName('form')[0];
@@ -71,7 +75,7 @@ function edit(row, email) {
     form.action = 'update.php';
 
     // Tạo input cho mỗi ô dữ liệu để chỉnh sửa
-    for (var i = 0; i < selectedRow.cells.length - 3; i++) {
+    for (var i = 0; i < 4; i++) {
         var input = document.createElement('input');
         input.type = 'text';
         input.name = 'data' + i;
@@ -118,20 +122,22 @@ function removeEmptyRows() {
 }
 // Thêm hàm để gửi yêu cầu xóa hàng
 function deleteRow(email) {
-    var form = document.createElement('form');
-    form.method = 'POST';
-    form.action = 'delete.php';
-    var emailInput = document.createElement('input');
-    emailInput.type = 'hidden';
-    emailInput.name = 'email';
-    emailInput.value = email;
-    form.appendChild(emailInput);
-    document.body.appendChild(form);
-    form.submit();
+    var confirmation = confirm("Bạn có chắc chắn muốn xóa?");
+    if (confirmation) {
+        var form = document.createElement('form');
+        form.method = 'POST';
+        form.action = 'delete.php';
+        var emailInput = document.createElement('input');
+        emailInput.type = 'hidden';
+        emailInput.name = 'email';
+        emailInput.value = email;
+        form.appendChild(emailInput);
+        document.body.appendChild(form);
+        form.submit();
+    } else {}
 }
-
 // Thêm hàm để gửi yêu cầu thêm dữ liệu mới
-function addNewRow(email) {
+function addNewRow() {
     var existingForm = document.getElementsByTagName('form')[0];
     if (existingForm) {
         existingForm.parentNode.removeChild(existingForm);
@@ -149,13 +155,6 @@ function addNewRow(email) {
         form.appendChild(input);
     }
 
-    // Thêm input ẩn để truyền email
-    var emailInput = document.createElement('input');
-    emailInput.type = 'hidden';
-    emailInput.name = 'email';
-    emailInput.value = email;
-    form.appendChild(emailInput);
-
     // Tạo nút submit để cập nhật dữ liệu
     var submit = document.createElement('input');
     submit.type = 'submit';
@@ -169,6 +168,7 @@ function addNewRow(email) {
     newCell.appendChild(form);
     scrollToBottom();
 }
+
 function scrollToBottom(){
     window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
 }

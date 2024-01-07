@@ -8,7 +8,7 @@
     left: 10%;
     border-radius: 5px; 
 }
-#button1, #button2 {
+#button1, #button2, #button3 {
     position: fixed;
     width: 50px;
     height: 50px;
@@ -16,6 +16,19 @@
     right: 20px;
     border-radius: 50%;
     padding: 10px 10px;
+}
+#button3 {
+    bottom: 20px;
+    padding: 5px;
+    transition: transform 0.5s linear;
+}
+
+#button3.action1 {
+    transform: translateY(-60px);
+}
+
+#button2{
+    padding:5px;
 }
 td:nth-child(5),th:nth-child(5),td:nth-child(6),th:nth-child(6),td:nth-child(7),th:nth-child(7) {
     display: none;
